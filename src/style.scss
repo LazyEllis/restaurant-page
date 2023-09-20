@@ -1,0 +1,180 @@
+@font-face {
+  font-family: "Athletics";
+  src: url("./assets/fonts/athletics_regular-webfont.woff2") format("woff2"),
+    url("./assets/fonts/athletics_regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$primary-color: #161345;
+$secondary-color: #ffffff;
+$max-columns: 3;
+
+@mixin white-clickable {
+  color: $primary-color;
+  background-color: $secondary-color;
+}
+
+:root {
+  font-size: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  background: url("./assets/img/donuts.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  font-family: "Athletics", sans-serif;
+  color: $primary-color;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: $secondary-color;
+
+  .nav {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin: 0;
+    justify-content: flex-end;
+    gap: 10px;
+    list-style: none;
+
+    button {
+      @include white-clickable();
+      font-size: inherit;
+      font-family: inherit;
+      padding: 14px;
+      border: 2px solid $primary-color;
+      border-radius: 50px;
+      width: 125px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        background-color: $primary-color;
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+#content {
+  flex: 1;
+  background-color: $primary-color;
+  color: $secondary-color;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+
+  div,
+  h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h2 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  div {
+    padding: 15px;
+    flex: 1;
+    border-top: 2px solid $secondary-color;
+  }
+
+  div.menu-grid {
+    border-top: 2px solid $secondary-color;
+    display: grid;
+    padding: 30px 15px 10px 15px;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(
+        max(250px, (100% - (($max-columns) - 1) * 15px) / ($max-columns)),
+        1fr
+      )
+    );
+    gap: 15px;
+
+    div {
+      border: 2px solid $secondary-color;
+
+      &:hover {
+        @include white-clickable();
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    font-size: 18px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+
+    .nav {
+      width: 100%;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+
+      button {
+        width: 100px;
+        padding: 10px;
+      }
+    }
+  }
+
+  #content {
+    width: 100%;
+    padding: 10px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    div {
+      padding: 10px;
+    }
+
+    div.menu-grid {
+      padding: 20px 10px 5px 10px;
+    }
+  }
+}

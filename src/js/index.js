@@ -1,3 +1,4 @@
+import '../style.scss';
 import insertHeader from './header.js';
 import populateHomeTab from './home.js';
 import populateMenuTab from './menu.js';
