@@ -1,4 +1,4 @@
-import { createSection } from './home.js';
+import { createSection } from './helpers.js';
 
 const heading = document.createElement('h2');
 heading.textContent = 'Contact';
@@ -17,9 +17,14 @@ const locationSection = createSection(
 );
 
 const populateContactTab = () => {
-  document
-    .querySelector('#content')
-    .append(heading, phoneSection, emailSection, hoursSection, locationSection);
+  const content = document.querySelector('#content');
+  content.append(
+    heading,
+    phoneSection,
+    emailSection,
+    hoursSection,
+    locationSection
+  );
 };
 
 export default populateContactTab;

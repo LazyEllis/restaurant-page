@@ -1,17 +1,11 @@
-const createGridItem = (subheadingTitle, paraContent) => {
-  const gridItem = document.createElement('div');
-  const subheading = document.createElement('h3');
-  const para = document.createElement('p');
-
-  subheading.textContent = subheadingTitle;
-  para.textContent = paraContent;
-
-  gridItem.append(subheading, para);
-  return gridItem;
-};
+import { createGridItem } from './helpers.js';
 
 const heading = document.createElement('h2');
+heading.textContent = 'Menu';
+
 const menuGrid = document.createElement('div');
+menuGrid.classList.add('menu-grid');
+
 const glazed = createGridItem(
   'Glazed',
   'Our classic donut. Simple, yet delicious.'
@@ -37,8 +31,6 @@ const sprinkle = createGridItem(
   'Our classic donut covered in sprinkles.'
 );
 
-heading.textContent = 'Menu';
-menuGrid.classList.add('menu-grid');
 menuGrid.append(
   glazed,
   chocolateFrosted,
@@ -49,7 +41,8 @@ menuGrid.append(
 );
 
 const populateMenuTab = () => {
-  document.querySelector('#content').append(heading, menuGrid);
+  const content = document.querySelector('#content');
+  content.append(heading, menuGrid);
 };
 
 export default populateMenuTab;

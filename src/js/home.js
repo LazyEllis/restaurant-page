@@ -1,23 +1,4 @@
-const createSection = (subheadingTitle, ...paraTexts) => {
-  const section = document.createElement('div');
-  const subheading = document.createElement('h3');
-  subheading.textContent = subheadingTitle;
-  const paragraphs = [];
-
-  for (let paraText of paraTexts) {
-    const paragraph = document.createElement('p');
-    paragraph.textContent = paraText;
-    paragraphs.push(paragraph);
-  }
-
-  section.appendChild(subheading);
-  paragraphs.forEach((paragraph) => {
-    section.appendChild(paragraph);
-  });
-
-  section.classList.add(subheadingTitle.toLowerCase());
-  return section;
-};
+import { createSection } from './helpers.js';
 
 const descriptionSentences = [
   'Donut Delights is a family-owned donut shop located in the heart of downtown.',
@@ -42,10 +23,8 @@ const locationSection = createSection(
 );
 
 const populateHomeTab = () => {
-  document
-    .querySelector('#content')
-    .append(heading, aboutSection, hoursSection, locationSection);
+  const content = document.querySelector('#content');
+  content.append(heading, aboutSection, hoursSection, locationSection);
 };
 
 export default populateHomeTab;
-export { createSection };
