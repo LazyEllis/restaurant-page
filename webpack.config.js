@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload');
 
 module.exports = {
   mode: 'production',
@@ -9,8 +10,25 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       inject: 'body',
+      favicon: 'src/assets/img/favicon.svg',
     }),
     new MiniCssExtractPlugin(),
+    new HtmlWebpackInjectPreload({
+      files: [
+        {
+          match: /.*\.woff2$/,
+          attributes: { as: 'font', type: 'font/woff2', crossorigin: true },
+        },
+        {
+          match: /.*\.woff$/,
+          attributes: { as: 'font', type: 'font/woff', crossorigin: true },
+        },
+        {
+          match: /.*\.webp$/,
+          attributes: { as: 'image' },
+        },
+      ],
+    }),
   ],
   module: {
     rules: [
@@ -19,7 +37,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
         type: 'asset/resource',
       },
       {
